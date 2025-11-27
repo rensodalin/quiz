@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'jokes.dart'; // import the jokes database
+import 'jokes.dart'; 
 
 Color appColor = Colors.green[300] as Color;
 
@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Stateful widget to manage the list and favorite
 class JokeList extends StatefulWidget {
   const JokeList({super.key});
 
@@ -32,14 +30,14 @@ class JokeList extends StatefulWidget {
 }
 
 class _JokeListState extends State<JokeList> {
-  int? favoriteIndex; // store index of the favorite joke
+  int? favoriteIndex; 
 
   void toggleFavorite(int index) {
     setState(() {
       if (favoriteIndex == index) {
-        favoriteIndex = null; // unselect if already favorite
+        favoriteIndex = null;
       } else {
-        favoriteIndex = index; // set new favorite
+        favoriteIndex = index; 
       }
     });
   }
@@ -61,7 +59,6 @@ class _JokeListState extends State<JokeList> {
   }
 }
 
-// Favorite card widget
 class FavoriteCard extends StatelessWidget {
   final String title;
   final String description;

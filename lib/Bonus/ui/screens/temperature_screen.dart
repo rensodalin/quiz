@@ -9,18 +9,7 @@ class TemperatureScreen extends StatefulWidget {
 
 class _TemperatureScreenState extends State<TemperatureScreen> {
   final TextEditingController _controller = TextEditingController();
-  double? _fahrenheit; // to store the converted temperature
-
-  void _convertTemperature(String value) {
-    setState(() {
-      final celsius = double.tryParse(value);
-      if (celsius != null) {
-        _fahrenheit = (celsius * 9 / 5) + 32;
-      } else {
-        _fahrenheit = null; // invalid input
-      }
-    });
-  }
+  double? _fahrenheit;
 
   final InputDecoration inputDecoration = InputDecoration(
     enabledBorder: OutlineInputBorder(
@@ -30,6 +19,17 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
     hintText: 'Enter a temperature',
     hintStyle: const TextStyle(color: Colors.white),
   );
+
+  void _convertTemperature(String value) {
+    setState(() {
+      double? celsius = double.tryParse(value);
+      if (celsius != null) {
+        _fahrenheit = celsius * 9 / 5 + 32;
+      } else {
+        _fahrenheit = null; // reset if input is invalid
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +56,10 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: _controller,
+              onChanged: _convertTemperature,
               decoration: inputDecoration,
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.number,
-              onChanged: _convertTemperature, // handle input
             ),
             const SizedBox(height: 30),
             const Text("Temperature in Fahrenheit:"),
@@ -71,8 +71,9 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                _fahrenheit != null ? _fahrenheit!.toStringAsFixed(2) : '',
-                style: const TextStyle(fontSize: 20),
+                _fahrenheit != null
+                    ? _fahrenheit!.toStringAsFixed(2)
+                    : 'test', // original placeholder
               ),
             ),
           ],

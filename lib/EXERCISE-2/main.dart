@@ -15,6 +15,7 @@ class TemperatureApp extends StatefulWidget {
 class _TemperatureAppState extends State<TemperatureApp> {
 
   bool isWelcomepage = true;
+  
   void gotoTemperatureScreen(){
     setState(() {
       isWelcomepage = false;

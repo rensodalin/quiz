@@ -1,12 +1,10 @@
-// jokes.dart
+
 class Joke {
   final String title;
   final String description;
 
   Joke({required this.title, required this.description});
 }
-
-// Sample jokes list
 List<Joke> jokes = List.generate(
   20,
   (index) => Joke(
